@@ -76,6 +76,10 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Normalize Table" sap2010:WorkflowViewState.IdRef="Sequence_6">
@@ -93,6 +97,7 @@
               <Variable x:TypeArguments="x:String" Name="meci" />
               <Variable x:TypeArguments="x:String" Name="gazde" />
               <Variable x:TypeArguments="ui:GenericValue" Name="oaspeti" />
+              <Variable x:TypeArguments="ui:GenericValue" Name="auxDate" />
             </Sequence.Variables>
             <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
@@ -142,17 +147,34 @@
                 <InArgument x:TypeArguments="x:Object">[oaspeti]</InArgument>
               </Assign.Value>
             </Assign>
+            <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+              <Assign.To>
+                <OutArgument x:TypeArguments="ui:GenericValue">[auxDate]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="ui:GenericValue">[row("DateTime").ToString.Replace(".","/")]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign>
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[row("DateTime")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Object">[auxDate]</InArgument>
+              </Assign.Value>
+              <sap2010:WorkflowViewState.IdRef>Assign_8</sap2010:WorkflowViewState.IdRef>
+            </Assign>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="matches.Columns(&quot;Gazde&quot;).SetOrdinal(0)&#xD;&#xA;matches.Columns(&quot;Oaspeti&quot;).SetOrdinal(1)&#xD;&#xA;" DisplayName="Invoke Code" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+    <ui:InvokeCode ContinueOnError="{x:Null}" Code="matches.Columns(&quot;Gazde&quot;).SetOrdinal(0)&#xA;matches.Columns(&quot;Oaspeti&quot;).SetOrdinal(1)&#xA;" DisplayName="Invoke Code" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
       <ui:InvokeCode.Arguments>
         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="matches">[Fortuna_RO_1]</InOutArgument>
       </ui:InvokeCode.Arguments>
     </ui:InvokeCode>
     <ui:RemoveDataColumn Column="{x:Null}" ColumnIndex="{x:Null}" ColumnName="Meci" DataTable="[Fortuna_RO_1]" DisplayName="Remove Data Column" sap2010:WorkflowViewState.IdRef="RemoveDataColumn_1" />
-    <sads:DebugSymbol.Symbol>dz5EOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE5vcm1hbGl6ZUZvcnR1bmFUYWJsZXMueGFtbCFRA5wBDgIBAVIFUqYCAgEtUwVTqAICASlUBZQBFQIBCZUBBZkBFQIBBpoBBZoByAECAQJSkAFSlwECATBSogFSsgECAS5TkAFTmQECASxTpAFTtAECASpUNlRGAgEnWguRARYCAQqXAUeXAVUCAQeaAU6aAVQCAQWaAV+aAW8CAQNhDWgWAgEjaQ1wFgIBHnENeBYCARh5DYABFgIBEoEBDYgBFgIBDokBDZABFgIBC2Y4Zk4CASZjOWM/AgEkbjduSgIBIWs4a0UCAR92OHZYAgEbczlzQAIBGX4/fl4CARV7QHtJAgEThgE4hgE/AgEQgwE5gwFHAgEPjgE4jgFBAgENiwE5iwFJAgEM</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dz5EOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE5vcm1hbGl6ZUZvcnR1bmFUYWJsZXMueGFtbCdVA7IBDgIBAVYFVqYCAgE0VwVXqAICATBYBaoBFQIBCasBBa8BFQIBBrABBbAByAECAQJWkAFWlwECATdWogFWsgECATVXkAFXmQECATNXpAFXtAECATFYNlhGAgEuXgunARYCAQqtAUetAVUCAQewAU6wAVQCAQWwAV+wAW8CAQNmDW0WAgEqbg11FgIBJXYNfRYCAR9+DYUBFgIBGYYBDY0BFgIBFY4BDZUBFgIBEpYBDZ0BFgIBDp4BDaYBFgIBC2s4a04CAS1oOWg/AgErczdzSgIBKHA4cEUCASZ7OHtYAgEieDl4QAIBIIMBP4MBXgIBHIABQIABSQIBGosBOIsBPwIBF4gBOYgBRwIBFpMBOJMBQQIBFJABOZABSQIBE5sBP5sBagIBEZgBQJgBSQIBD6MBOKMBQQIBDaABOaABSgIBDA==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -164,15 +186,17 @@
       <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="243.2,60" />
       <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="243.2,60" />
       <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="243.2,60" />
-      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,52.8">
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="265.6,884.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="314.4,52.8">
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="296,1033.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

@@ -72,7 +72,7 @@
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Master" sap2010:WorkflowViewState.IdRef="Flowchart_2">
     <Flowchart.StartNode>
-      <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+      <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
         <Flowchart DisplayName="Fortuna" sap2010:WorkflowViewState.IdRef="Flowchart_1">
           <Flowchart.StartNode>
             <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
@@ -132,16 +132,24 @@
                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="Fortuna_RO_1">[Fortuna_RO_1]</InOutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WriteToFile workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
-                  <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[Fortuna_RO_1]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="path">Fortuna\Romania\1\</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
-                      <Literal x:TypeArguments="x:String" Value="" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
-                  </ui:InvokeWorkflowFile.Arguments>
-                </ui:InvokeWorkflowFile>
+                <ui:CommentOut DisplayName="Comment Out">
+                  <ui:CommentOut.Body>
+                    <Sequence DisplayName="Ignored Activities">
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WriteToFile workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[Fortuna_RO_1]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="path">Fortuna\Romania\1\</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
+                            <Literal x:TypeArguments="x:String" Value="" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <sap2010:WorkflowViewState.IdRef>Sequence_22</sap2010:WorkflowViewState.IdRef>
+                    </Sequence>
+                  </ui:CommentOut.Body>
+                  <sap2010:WorkflowViewState.IdRef>CommentOut_1</sap2010:WorkflowViewState.IdRef>
+                </ui:CommentOut>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="WritetoTestDB.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="sd:DataTable" x:Key="MatchesTable">[Fortuna_RO_1]</InArgument>
@@ -152,146 +160,143 @@
           </Flowchart.StartNode>
           <x:Reference>__ReferenceID0</x:Reference>
         </Flowchart>
-        <FlowStep.Next>
-          <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_4">
-            <Flowchart DisplayName="Mozzart" sap2010:WorkflowViewState.IdRef="Flowchart_3">
-              <Flowchart.StartNode>
-                <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-                  <Sequence DisplayName="Romania Liga 1" sap2010:WorkflowViewState.IdRef="Sequence_16">
-                    <Sequence.Variables>
-                      <Variable x:TypeArguments="sd:DataTable" Name="Mozzart_RO_1" />
-                    </Sequence.Variables>
-                    <Sequence DisplayName="Web Scraping" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="ui:Browser" Name="Mozzart_Browser" />
-                      </Sequence.Variables>
-                      <ui:OpenBrowser BrowserType="Firefox" DisplayName="Open https://www.mozzartbet.ro/ro/pariuri/cote" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" NewSession="True" Private="False" UiBrowser="[Mozzart_Browser]" Url="https://www.mozzartbet.ro/ro/pariuri/cote">
-                        <ui:OpenBrowser.Body>
-                          <ActivityAction x:TypeArguments="x:Object">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                            </ActivityAction.Argument>
-                            <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_13">
-                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  #'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                <ui:Click.CursorPosition>
-                                  <ui:CursorPosition OffsetX="157" OffsetY="13" Position="TopLeft" />
-                                </ui:Click.CursorPosition>
-                                <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3d4b759957bf1ab25c62e6b256ab9b09" Selector="&lt;webctrl aaname='Fotbal (*)' parentid='acc' tag='A' /&gt;" WaitForReady="COMPLETE" />
-                                </ui:Click.Target>
-                              </ui:Click>
-                              <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                <ui:Click.CursorPosition>
-                                  <ui:CursorPosition OffsetX="85" OffsetY="9" Position="TopLeft" />
-                                </ui:Click.CursorPosition>
-                                <ui:Click.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="245cb924eac81a1c350795cdcda7cd93" Selector="&lt;webctrl aaname=' ROMANIA 1 (*)' parentid='acc' tag='SPAN' /&gt;" WaitForReady="COMPLETE" />
-                                </ui:Click.Target>
-                              </ui:Click>
-                              <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[Mozzart_RO_1]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;/row&gt;&lt;column exact='1' name='Gazde' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' idx='1'/&gt;&lt;webctrl tag='div' class='look' idx='1'/&gt;&lt;webctrl tag='div' class='match-teams1' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='span' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Oaspeti' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' idx='1'/&gt;&lt;webctrl tag='div' class='look' idx='1'/&gt;&lt;webctrl tag='div' class='match-teams1' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='span' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='1' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i0   ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='X' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i1   ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='2' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i2 g0  ' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
-                                <ui:ExtractData.Target>
-                                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bd327dfdc58731def3c253372e48e1e2" Selector="&lt;webctrl parentid='all-matches' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
-                                </ui:ExtractData.Target>
-                              </ui:ExtractData>
-                              <InvokeMethod DisplayName="Invoke Method" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Close">
-                                <InvokeMethod.TargetObject>
-                                  <InArgument x:TypeArguments="ui:Browser">[Mozzart_Browser]</InArgument>
-                                </InvokeMethod.TargetObject>
-                              </InvokeMethod>
-                            </Sequence>
-                          </ActivityAction>
-                        </ui:OpenBrowser.Body>
-                      </ui:OpenBrowser>
-                    </Sequence>
-                    <Sequence DisplayName="Normalize Mozzart Table" sap2010:WorkflowViewState.IdRef="Sequence_14">
-                      <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Tabelurile &quot;Mozzart&quot; sunt considerate momentan normale" />
-                    </Sequence>
-                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
-                      <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[Mozzart_RO_1]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="path">Mozzart\Romania\1\</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
-                          <Literal x:TypeArguments="x:String" Value="" />
-                        </InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
-                      </ui:InvokeWorkflowFile.Arguments>
-                    </ui:InvokeWorkflowFile>
-                  </Sequence>
-                </FlowStep>
-              </Flowchart.StartNode>
-              <x:Reference>__ReferenceID1</x:Reference>
-            </Flowchart>
-            <FlowStep.Next>
-              <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_6">
-                <Flowchart DisplayName="Casa Pariurilor" sap2010:WorkflowViewState.IdRef="Flowchart_4">
-                  <Flowchart.StartNode>
-                    <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_5">
-                      <Sequence DisplayName="Romania Liga 1" sap2010:WorkflowViewState.IdRef="Sequence_21">
-                        <Sequence.Variables>
-                          <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="CasaP_RO_1" />
-                        </Sequence.Variables>
-                        <Sequence DisplayName="Web Scraping" sap2010:WorkflowViewState.IdRef="Sequence_19">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="ui:Browser" Name="CasaP_Browser" />
-                          </Sequence.Variables>
-                          <ui:OpenBrowser BrowserType="Firefox" DisplayName="Open https://www.casapariurilor.ro/" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_4" NewSession="True" Private="False" UiBrowser="[CasaP_Browser]" Url="https://www.casapariurilor.ro/">
-                            <ui:OpenBrowser.Body>
-                              <ActivityAction x:TypeArguments="x:Object">
-                                <ActivityAction.Argument>
-                                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                                </ActivityAction.Argument>
-                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_18">
-                                  <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /Sport/SuperCategory...'" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                                    <ui:Click.CursorPosition>
-                                      <ui:CursorPosition OffsetX="144" OffsetY="23" Position="TopLeft" />
-                                    </ui:Click.CursorPosition>
-                                    <ui:Click.Target>
-                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e310957fe97965ff6def2c1d5f34aebb" Selector="&lt;webctrl aaname='                                                                *' href='/Sport/SuperCategory/Liga-1-Romania/17?date=sve' tag='A' /&gt;" WaitForReady="COMPLETE" />
-                                    </ui:Click.Target>
-                                  </ui:Click>
-                                  <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[CasaP_RO_1]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'HTML '" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;/row&gt;&lt;column exact='1' name='Gazde' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col event-col-header' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-center' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-team top' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Oaspeti' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col event-col-header' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-center' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-team bottom' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='1' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='X' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='2' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='3'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100">
-                                    <ui:ExtractData.Target>
-                                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a32bfe2c97c9a5957be113bf65d74722" Selector="&lt;webctrl idx='1' tag='HTML' /&gt;" WaitForReady="COMPLETE" />
-                                    </ui:ExtractData.Target>
-                                  </ui:ExtractData>
-                                  <InvokeMethod DisplayName="Invoke Method" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Close">
-                                    <InvokeMethod.TargetObject>
-                                      <InArgument x:TypeArguments="ui:Browser">[CasaP_Browser]</InArgument>
-                                    </InvokeMethod.TargetObject>
-                                  </InvokeMethod>
-                                </Sequence>
-                              </ActivityAction>
-                            </ui:OpenBrowser.Body>
-                          </ui:OpenBrowser>
-                        </Sequence>
-                        <Sequence DisplayName="Normalize Casa Pariurilor Table" sap2010:WorkflowViewState.IdRef="Sequence_20">
-                          <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Tabelul &quot;Casa Pariurilor&quot; este considerat momentan normal&#xA;" />
-                        </Sequence>
-                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
-                          <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[CasaP_RO_1]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="path">Casa Pariurilor\Romania\1\</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
-                              <Literal x:TypeArguments="x:String" Value="" />
-                            </InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
-                          </ui:InvokeWorkflowFile.Arguments>
-                        </ui:InvokeWorkflowFile>
-                      </Sequence>
-                    </FlowStep>
-                  </Flowchart.StartNode>
-                  <x:Reference>__ReferenceID2</x:Reference>
-                </Flowchart>
-              </FlowStep>
-            </FlowStep.Next>
-          </FlowStep>
-        </FlowStep.Next>
       </FlowStep>
     </Flowchart.StartNode>
-    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_4">
+      <Flowchart DisplayName="Mozzart" sap2010:WorkflowViewState.IdRef="Flowchart_3">
+        <Flowchart.StartNode>
+          <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+            <Sequence DisplayName="Romania Liga 1" sap2010:WorkflowViewState.IdRef="Sequence_16">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="Mozzart_RO_1" />
+              </Sequence.Variables>
+              <Sequence DisplayName="Web Scraping" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="ui:Browser" Name="Mozzart_Browser" />
+                </Sequence.Variables>
+                <ui:OpenBrowser BrowserType="Firefox" DisplayName="Open https://www.mozzartbet.ro/ro/pariuri/cote" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_3" NewSession="True" Private="False" UiBrowser="[Mozzart_Browser]" Url="https://www.mozzartbet.ro/ro/pariuri/cote">
+                  <ui:OpenBrowser.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  #'" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition OffsetX="157" OffsetY="13" Position="TopLeft" />
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3d4b759957bf1ab25c62e6b256ab9b09" Selector="&lt;webctrl aaname='Fotbal (*)' parentid='acc' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                          <ui:Click.CursorPosition>
+                            <ui:CursorPosition OffsetX="85" OffsetY="9" Position="TopLeft" />
+                          </ui:Click.CursorPosition>
+                          <ui:Click.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="245cb924eac81a1c350795cdcda7cd93" Selector="&lt;webctrl aaname=' ROMANIA 1 (*)' parentid='acc' tag='SPAN' /&gt;" WaitForReady="COMPLETE" />
+                          </ui:Click.Target>
+                        </ui:Click>
+                        <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[Mozzart_RO_1]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'TBODY'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;/row&gt;&lt;column exact='1' name='Gazde' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' idx='1'/&gt;&lt;webctrl tag='div' class='look' idx='1'/&gt;&lt;webctrl tag='div' class='match-teams1' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='span' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Oaspeti' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' idx='1'/&gt;&lt;webctrl tag='div' class='look' idx='1'/&gt;&lt;webctrl tag='div' class='match-teams1' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='span' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='1' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i0   ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='X' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i1   ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='2' attr='text'&gt;&lt;webctrl tag='tr' class='match-row ready'/&gt;&lt;webctrl tag='td' class='odd tooltip i2 g0  ' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
+                          <ui:ExtractData.Target>
+                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="bd327dfdc58731def3c253372e48e1e2" Selector="&lt;webctrl parentid='all-matches' tag='TBODY' /&gt;" WaitForReady="COMPLETE" />
+                          </ui:ExtractData.Target>
+                        </ui:ExtractData>
+                        <InvokeMethod DisplayName="Invoke Method" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Close">
+                          <InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="ui:Browser">[Mozzart_Browser]</InArgument>
+                          </InvokeMethod.TargetObject>
+                        </InvokeMethod>
+                      </Sequence>
+                    </ActivityAction>
+                  </ui:OpenBrowser.Body>
+                </ui:OpenBrowser>
+              </Sequence>
+              <Sequence DisplayName="Normalize Mozzart Table" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_2" Text="// Tabelurile &quot;Mozzart&quot; sunt considerate momentan normale" />
+              </Sequence>
+              <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[Mozzart_RO_1]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="path">Mozzart\Romania\1\</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
+                    <Literal x:TypeArguments="x:String" Value="" />
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </Sequence>
+          </FlowStep>
+        </Flowchart.StartNode>
+        <x:Reference>__ReferenceID2</x:Reference>
+      </Flowchart>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+          <Flowchart DisplayName="Casa Pariurilor" sap2010:WorkflowViewState.IdRef="Flowchart_4">
+            <Flowchart.StartNode>
+              <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                <Sequence DisplayName="Romania Liga 1" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="CasaP_RO_1" />
+                  </Sequence.Variables>
+                  <Sequence DisplayName="Web Scraping" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="ui:Browser" Name="CasaP_Browser" />
+                    </Sequence.Variables>
+                    <ui:OpenBrowser BrowserType="Firefox" DisplayName="Open https://www.casapariurilor.ro/" Hidden="False" sap2010:WorkflowViewState.IdRef="OpenBrowser_4" NewSession="True" Private="False" UiBrowser="[CasaP_Browser]" Url="https://www.casapariurilor.ro/">
+                      <ui:OpenBrowser.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                            <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  /Sport/SuperCategory...'" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                              <ui:Click.CursorPosition>
+                                <ui:CursorPosition OffsetX="144" OffsetY="23" Position="TopLeft" />
+                              </ui:Click.CursorPosition>
+                              <ui:Click.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e310957fe97965ff6def2c1d5f34aebb" Selector="&lt;webctrl aaname='                                                                *' href='/Sport/SuperCategory/Liga-1-Romania/17?date=sve' tag='A' /&gt;" WaitForReady="COMPLETE" />
+                              </ui:Click.Target>
+                            </ui:Click>
+                            <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[CasaP_RO_1]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'HTML '" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;/row&gt;&lt;column exact='1' name='Gazde' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col event-col-header' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-center' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-team top' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Oaspeti' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col event-col-header' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-center' idx='1'/&gt;&lt;webctrl tag='a' idx='1'/&gt;&lt;webctrl tag='div' class='event-header-team bottom' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='1' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='X' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='2'/&gt;&lt;/column&gt;&lt;column exact='1' name='2' attr='text'&gt;&lt;webctrl tag='body' idx='1'/&gt;&lt;webctrl tag='div' class='default-layout' idx='1'/&gt;&lt;webctrl tag='div' class='container-fluid with-ticket' idx='1'/&gt;&lt;webctrl tag='div' class='content' idx='1'/&gt;&lt;webctrl tag='div' class='main offer' idx='1'/&gt;&lt;webctrl tag='div' class='betting-tables' idx='1'/&gt;&lt;webctrl tag='div' class='psk-sport-group sport-group-type-soccer js-psk-event-container expanded' idx='1'/&gt;&lt;webctrl tag='div' class='sport-group-list-container collapse in' idx='1'/&gt;&lt;webctrl tag='div' class='psk-event-list' idx='1'/&gt;&lt;webctrl tag='div' class='event-layout'/&gt;&lt;webctrl tag='div' class='event-col-scroll' idx='1'/&gt;&lt;webctrl tag='div' class='event-col event-col-bets bet-offer-list' idx='1'/&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='bet-pick bet-pick-3 ' idx='3'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100">
+                              <ui:ExtractData.Target>
+                                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a32bfe2c97c9a5957be113bf65d74722" Selector="&lt;webctrl idx='1' tag='HTML' /&gt;" WaitForReady="COMPLETE" />
+                              </ui:ExtractData.Target>
+                            </ui:ExtractData>
+                            <InvokeMethod DisplayName="Invoke Method" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Close">
+                              <InvokeMethod.TargetObject>
+                                <InArgument x:TypeArguments="ui:Browser">[CasaP_Browser]</InArgument>
+                              </InvokeMethod.TargetObject>
+                            </InvokeMethod>
+                          </Sequence>
+                        </ActivityAction>
+                      </ui:OpenBrowser.Body>
+                    </ui:OpenBrowser>
+                  </Sequence>
+                  <Sequence DisplayName="Normalize Casa Pariurilor Table" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                    <ui:Comment sap2010:WorkflowViewState.IdRef="Comment_1" Text="// Tabelul &quot;Casa Pariurilor&quot; este considerat momentan normal&#xA;" />
+                  </Sequence>
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Workflow File" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="WriteToFile.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="sd:DataTable" x:Key="matchesTable">[CasaP_RO_1]</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="path">Casa Pariurilor\Romania\1\</InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="absolutePath">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="file">meciuri.csv</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                </Sequence>
+              </FlowStep>
+            </Flowchart.StartNode>
+            <x:Reference>__ReferenceID3</x:Reference>
+          </Flowchart>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
     <x:Reference>__ReferenceID4</x:Reference>
-    <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>dyxEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE1haW4ueGFtbGNJA6cCDwIBAUwJmgEVAgFHnQEN3wEZAgEj4gERnAIdAgECTw+WARoCAUigARPbAR4CASTlAReYAiICAQNRRFFhAgFJUxGBARwCAVmCARGGASkCAVWHARGQASkCAU6RARGVASkCAUqkARXNASACAS7OARXQASACASzRARXaAS0CASXnAUznAWkCAQTpARmKAiQCAQ6LAhmNAiQCAQyOAhmXAjECAQVXE4ABJAIBWoQBWIQBZgIBV4IBzwGCAewBAgFWjgFJjgFUAgFUigFJigFbAgFTiQFViQFjAgFRhwHEAYcB1gECAVCMAReMAUYCAU+TAVWTAWMCAUyRAcYBkQHaAQIBS6gBF8wBKAIBL88BF88BnAECAS3YAU3YAVgCASvUAU3UAV8CASrTAVnTAWcCASjRAcEB0QHTAQIBJ9YBG9YBSgIBJu0BG4kCLAIBD4wCG4wCqAECAQ2VAlGVAlwCAQuRAlGRAmsCAQqQAl2QAmkCAQiOAsUBjgLXAQIBB5MCH5MCTgIBBlfjAVf2AQIBcVf7AVeoAgIBcF0ZfSQCAVuoAeUBqAH4AQIBRagB/QGoAagCAgFErgEdyQEoAgEw7QHeAe0B7wECASHtAfQB7QGUAgIBIPMBIYYCLAIBEF4bZSYCAWxmG3cmAgFfeBt8KgIBXK8BH7YBKgIBQLcBH74BKgIBPL8BH8MBMAIBNMQBH8gBLgIBMfQBI/sBLgIBHPwBI4ACNAIBFIECI4UCMgIBEWOuAWPsAQIBb2BHYEsCAW5gOmA+AgFtZx12LwIBYHpIelkCAV20AbIBtAHwAQIBQ7EBTLEBUAIBQrEBPrEBQwIBQbwBsgG8AfcBAgE/uQFLuQFOAgE+uQE+uQFCAgE9vwH+C78BgwwCATvBAbIBwQHoAQIBOr8BkQG/AZYBAgE5vwFbvwFhAgE4vwFsvwF8AgE2vwHVAb8BugsCATXGAUzGAV0CATL5AbYB+QHTAgIBH/YBUPYBVAIBHvYBQvYBRwIBHfwBnCv8AaErAgEb/gG2Af4B3AECARr8AZMB/AGYAQIBGfwBX/wBZQIBGPwBcPwBfgIBFvwB1wH8AdgqAgEVgwJQgwJfAgESZ4sBZ54BAgFqbSNzLgIBYW4lcjYCAWJu5wxu7AwCAWlwuAFw4gECAWhulwFunAECAWduYW5nAgFmbnJuggECAWRu4gFuowwCAWM=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE1haW4ueGFtbCFJA6wCDwIBAUwJogEVAgECTw+eARoCAQNRRFFhAgEEUxGBARwCAQ6CARGGASkCAQqHARGYASECAQmZARGdASkCAQVXE4ABJAIBD4QBWIQBZgIBDIIBzwGCAewBAgELmwFVmwFjAgEHmQHGAZkB2gECAQZX4wFX9gECASZX+wFXqAICASVdGX0kAgEQXhtlJgIBIWYbdyYCARR4G3wqAgERY64BY+wBAgEkYEdgSwIBI2A6YD4CASJnHXYvAgEVekh6WQIBEmeLAWeeAQIBH20jcy4CARZuJXI2AgEXbucMbuwMAgEecLgBcOIBAgEdbpcBbpwBAgEcbmFuZwIBG25yboIBAgEZbuIBbqMMAgEY</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -347,8 +352,23 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InvokeWorkflowFile_1" sap:VirtualizedContainerService.HintSize="314.4,88" />
       <sap2010:ViewStateData Id="InvokeWorkflowFile_2" sap:VirtualizedContainerService.HintSize="314.4,88" />
+      <sap2010:ViewStateData Id="Sequence_22" sap:VirtualizedContainerService.HintSize="336.8,212.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CommentOut_1" sap:VirtualizedContainerService.HintSize="314.4,52.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="InvokeWorkflowFile_5" sap:VirtualizedContainerService.HintSize="314.4,88" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="336.8,561.6">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="336.8,526.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -363,13 +383,21 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="200,52.8">
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="614.4,636.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75.2</av:Size>
             <av:PointCollection x:Key="ConnectorLocation">270,40.1 120,40.1 120,94.02</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">50,114.02</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -506,15 +534,6 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="FlowStep_2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">50,114.02</av:Point>
-            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">250,140.42 280,140.42 280,140 350,140</av:PointCollection>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Flowchart_2" sap:VirtualizedContainerService.HintSize="614.4,636.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -525,7 +544,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="654.4,716.8" />
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="654.4,756.8" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
