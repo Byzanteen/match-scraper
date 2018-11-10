@@ -13,6 +13,9 @@
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="MatchesTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="leagueArg" Type="InArgument(x:String)" />
+    <x:Property Name="countryArg" Type="InArgument(x:String)" />
+    <x:Property Name="bookieArg" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -94,7 +97,6 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Write to Test DB" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -129,8 +131,8 @@
                 </Sequence.Variables>
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLeagueandCountryCodes workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="GetLeagueandCountryCodes.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="leagueName">Liga 1</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="countryName">Romania</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="leagueName">[leagueArg]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="countryName">[countryArg]</InArgument>
                     <OutArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</OutArgument>
                     <OutArgument x:TypeArguments="x:Int32" x:Key="countryId">[countryId]</OutArgument>
                     <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
@@ -201,7 +203,7 @@
                 <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetBookieId workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="GetBookieId.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="bookieName">Fortuna</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="bookieName">[bookieArg]</InArgument>
                     <OutArgument x:TypeArguments="x:Int32" x:Key="bookieId">[bookieId]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
@@ -248,7 +250,7 @@
         </ui:ForEachRow>
       </TryCatch.Try>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dzVEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXFdyaXRldG9UZXN0REIueGFtbElkA/wBDgIBAWkFaZYCAgFoagX6ARACAQJpjgFppQECAWxptwFpkwICAWtpLGk2AgFpbwn4ARkCAQZsCWyQAQIBA286b0oCAWZ1D/UBGgIBB2wzbD0CAQSCARGKASkCAVyLARGSASkCAVOTARGaASkCAUqbARGiARoCAUajARGqARoCAUKrARGyARoCAT6zARHIARwCATfJARHPASkCATDQARHYASkCASTZARH0ARwCAQiEAU+EAVUCAWWHAU6HAVkCAWOFAVCFAVcCAWKIAViIAWACAWCGAU2GAVcCAV6CAdEBggHwAQIBXY0BTY0BZAIBW48BWI8BYAIBWY4BS44BUwIBV5ABTJABVgIBVYsBwgGLAdIBAgFUlQFNlQFmAgFSlwFYlwFgAgFQlgFLlgFTAgFOmAFMmAFWAgFMkwHCAZMB0gECAUugAT2gAV8CAUmdAT6dAUICAUeoAT2oAV8CAUWlAT6lAUICAUOwAT2wAV8CAUGtAT6tAUICAT+1ARW8AR4CATrEARnEAZkBAgE4zAFPzAFWAgE2ywFYywFgAgE0zQFNzQFXAgEyyQHEAckB1gECATHVAU/VAVwCAS7SAUrSAVICASzTAUrTAVICASrQAc0B0AHnAQIBKdQBTNQBVgIBJ9YBStYBUgIBJdsBFegBKgIBDPABGfAB3QECAQm6AUK6AbYBAgE9twFDtwFQAgE7xAFwxAGWAQIBOeABTOABUAIBIuEBTOEBUAIBINsBvAHbAcYBAgEe4gFM4gFQAgEc5AFO5AFYAgEa3QFM3QFUAgEY5gFN5gFVAgEW5QFP5QFaAgEU3wFU3wFhAgES3gFM3gFUAgEQ2wH/AdsB5AICAQ/jAU7jAVgCAQ3wAYYB8AHaAQIBCg==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dzVEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXFdyaXRldG9UZXN0REIueGFtbElmA/4BDgIBAWsFa5YCAgFrbAX8ARACAQJrjgFrpQECAW9rtwFrkwICAW5rLGs2AgFscQn6ARkCAQZuCW6QAQIBA3E6cUoCAWl3D/cBGgIBB24zbj0CAQSEARGMASkCAV2NARGUASkCAVSVARGcASkCAUudARGkARoCAUelARGsARoCAUOtARG0ARoCAT+1ARHKARwCATjLARHRASkCATDSARHaASkCASTbARH2ARwCAQiGAU+GAVoCAWeJAU6JAVkCAWWHAVCHAVwCAWOKAViKAWACAWGIAU2IAVcCAV+EAdEBhAHwAQIBXo8BTY8BZAIBXJEBWJEBYAIBWpABS5ABUwIBWJIBTJIBVgIBVo0BwgGNAdIBAgFVlwFNlwFmAgFTmQFYmQFgAgFRmAFLmAFTAgFPmgFMmgFWAgFNlQHCAZUB0gECAUyiAT2iAV8CAUqfAT6fAUICAUiqAT2qAV8CAUanAT6nAUICAUSyAT2yAV8CAUKvAT6vAUICAUC3ARW+AR4CATvGARnGAZkBAgE5zgFPzgFaAgE2zQFYzQFgAgE0zwFNzwFXAgEyywHEAcsB1gECATHXAU/XAVwCAS7UAUrUAVICASzVAUrVAVICASrSAc0B0gHnAQIBKdYBTNYBVgIBJ9gBStgBUgIBJd0BFeoBKgIBDPIBGfIB3QECAQm8AUK8AbYBAgE+uQFDuQFQAgE8xgFwxgGWAQIBOuIBTOIBUAIBIuMBTOMBUAIBIN0BvAHdAcYBAgEe5AFM5AFQAgEc5gFO5gFYAgEa3wFM3wFUAgEY6AFN6AFVAgEW5wFP5wFaAgEU4QFU4QFhAgES4AFM4AFUAgEQ3QH/Ad0B5AICAQ/lAU7lAVgCAQ3yAYYB8gHaAQIBCg==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -302,7 +304,7 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ExecuteNonQuery_1" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
       <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314.4,92.8" />
-      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="400,22.4">
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="403.2,22.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -310,7 +312,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="417.6,187.2">
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="417.6,320.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -318,7 +320,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="440,1583.2">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="440,1716.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -326,7 +328,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="470.4,1732">
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="470.4,1865.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
