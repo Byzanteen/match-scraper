@@ -61,7 +61,6 @@
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>UiPath.Database</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Master" sap2010:WorkflowViewState.IdRef="Flowchart_2">
@@ -126,7 +125,7 @@
                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="Fortuna_RO_1">[Fortuna_RO_1]</InOutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
-                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="WritetoTestDB.xaml">
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WriteToDb workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="WriteToDb.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="sd:DataTable" x:Key="MatchesTable">[Fortuna_RO_1]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="leagueArg">Liga 1</InArgument>
@@ -197,7 +196,7 @@
                         <InArgument x:TypeArguments="x:String" x:Key="countryArg">Romania</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
-                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="WritetoTestDB.xaml">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="WriteToDb.xaml">
                       <ui:InvokeWorkflowFile.Arguments>
                         <InArgument x:TypeArguments="sd:DataTable" x:Key="MatchesTable">[Mozzart_RO_1]</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="leagueArg">Liga 1</InArgument>
@@ -260,7 +259,7 @@
                             <InArgument x:TypeArguments="x:String" x:Key="countryArg">Romania</InArgument>
                           </ui:InvokeWorkflowFile.Arguments>
                         </ui:InvokeWorkflowFile>
-                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="WritetoTestDB.xaml">
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke WritetoTestDB workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="WriteToDb.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
                             <InArgument x:TypeArguments="sd:DataTable" x:Key="MatchesTable">[CasaP_RO_1]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="leagueArg">Liga 1</InArgument>
@@ -282,7 +281,7 @@
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>dyxEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE1haW4ueGFtbGZDA54CDwIBAUYJjQEVAgFPkAEN1AEZAgEn1wERkwIdAgECSQ+JARoCAVCTARPQAR4CASjaARePAiICAQNLREthAgFRTRF7HAIBXXwRgAEpAgFZgQERiAEpAgFSlwEVwAEgAgE2wQEVxwEtAgEwyAEVzwEtAgEp3AFM3AFpAgEE3gEZ/wEkAgESgAIZhgIxAgEMhwIZjgIxAgEFURN6JAIBXn5YfmYCAVt8zwF87AECAVqGAU6GAVUCAViFAU+FAVYCAVeEAU6EAVQCAVaDAVWDAWMCAVSBAcYBgQHaAQIBU5sBF78BKAIBN8UBU8UBWgIBNcQBUsQBWAIBNMMBWcMBZwIBMsEB0gHBAe4BAgExzQFSzQFZAgEvzAFTzAFaAgEuywFSywFYAgEtygFZygFnAgEryAHKAcgB3gECASriARv+ASwCAROEAleEAl4CARGDAlaDAlwCARCCAl2CAmkCAQ6AAtYBgALyAQIBDYwCVowCZQIBC4sCV4sCXgIBCooCVooCXAIBCYkCXYkCaQIBB4cCzwGHAuMBAgEGUeMBUfYBAgF1UfsBUagCAgF0Vxl3JAIBX5sB5QGbAfgBAgFNmwH9AZsBqAICAUyhAR28ASgCATjiAd4B4gHvAQIBJeIB9AHiAZQCAgEk6AEh+wEsAgEUWBtfJgIBcGAbcSYCAWNyG3YqAgFgogEfqQEqAgFIqgEfsQEqAgFEsgEftgEwAgE8twEfuwEuAgE56QEj8AEuAgEg8QEj9QE0AgEY9gEj+gEyAgEVXa4BXewBAgFzWkdaSwIBclo6Wj4CAXFhHXAvAgFkdEh0WQIBYacBsgGnAfABAgFLpAFMpAFQAgFKpAE+pAFDAgFJrwGyAa8B9wECAUesAUusAU4CAUasAT6sAUICAUWyAf4LsgGDDAIBQ7QBsgG0AegBAgFCsgGRAbIBlgECAUGyAVuyAWECAUCyAWyyAXwCAT6yAdUBsgG6CwIBPbkBTLkBXQIBOu4BtgHuAdMCAgEj6wFQ6wFUAgEi6wFC6wFHAgEh8QGcK/EBoSsCAR/zAbYB8wHcAQIBHvEBkwHxAZgBAgEd8QFf8QFlAgEc8QFw8QF+AgEa8QHXAfEB2CoCARn4AVD4AV8CARZhiwFhngECAW5nI20uAgFlaCVsNgIBZmjnDGjsDAIBbWq4AWriAQIBbGiXAWicAQIBa2hhaGcCAWpocmiCAQIBaGjiAWijDAIBZw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>dyxEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE1haW4ueGFtbGZCA50CDwIBAUUJjAEVAgFPjwEN0wEZAgEn1gERkgIdAgECSA+IARoCAVCSARPPAR4CASjZAReOAiICAQNKREphAgFRTBF6HAIBXXsRfykCAVmAARGHASkCAVKWARW/ASACATbAARXGAS0CATDHARXOAS0CASnbAUzbAWkCAQTdARn+ASQCARL/ARmFAjECAQyGAhmNAjECAQVQE3kkAgFefVh9ZgIBW3vPAXvsAQIBWoUBToUBVQIBWIQBT4QBVgIBV4MBToMBVAIBVoIBVYIBYwIBVIABwgGAAdIBAgFTmgEXvgEoAgE3xAFTxAFaAgE1wwFSwwFYAgE0wgFZwgFnAgEywAHSAcAB7gECATHMAVLMAVkCAS/LAVPLAVoCAS7KAVLKAVgCAS3JAVnJAWcCASvHAcoBxwHaAQIBKuEBG/0BLAIBE4MCV4MCXgIBEYICVoICXAIBEIECXYECaQIBDv8B1gH/AfIBAgENiwJWiwJlAgELigJXigJeAgEKiQJWiQJcAgEJiAJdiAJpAgEHhgLPAYYC3wECAQZQ4wFQ9gECAXVQ+wFQqAICAXRWGXYkAgFfmgHlAZoB+AECAU2aAf0BmgGoAgIBTKABHbsBKAIBOOEB3gHhAe8BAgEl4QH0AeEBlAICASTnASH6ASwCARRXG14mAgFwXxtwJgIBY3EbdSoCAWChAR+oASoCAUipAR+wASoCAUSxAR+1ATACATy2AR+6AS4CATnoASPvAS4CASDwASP0ATQCARj1ASP5ATICARVcrgFc7AECAXNZR1lLAgFyWTpZPgIBcWAdby8CAWRzSHNZAgFhpgGyAaYB8AECAUujAUyjAVACAUqjAT6jAUMCAUmuAbIBrgH3AQIBR6sBS6sBTgIBRqsBPqsBQgIBRbEB/guxAYMMAgFDswGyAbMB6AECAUKxAZEBsQGWAQIBQbEBW7EBYQIBQLEBbLEBfAIBPrEB1QGxAboLAgE9uAFMuAFdAgE67QG2Ae0B0wICASPqAVDqAVQCASLqAULqAUcCASHwAZwr8AGhKwIBH/IBtgHyAdwBAgEe8AGTAfABmAECAR3wAV/wAWUCARzwAXDwAX4CARrwAdcB8AHYKgIBGfcBUPcBXwIBFmCLAWCeAQIBbmYjbC4CAWVnJWs2AgFmZ+cMZ+wMAgFtabgBaeIBAgFsZ5cBZ5wBAgFrZ2FnZwIBamdyZ4IBAgFoZ+IBZ6MMAgFn</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -453,7 +452,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Flowchart_4" sap:VirtualizedContainerService.HintSize="200,52.8">
+      <sap2010:ViewStateData Id="Flowchart_4" sap:VirtualizedContainerService.HintSize="614.4,636.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

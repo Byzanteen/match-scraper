@@ -1,0 +1,629 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="WritetoTestDB"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="MatchesTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="leagueArg" Type="InArgument(x:String)" />
+    <x:Property Name="countryArg" Type="InArgument(x:String)" />
+    <x:Property Name="bookieArg" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>WritetoTestDB_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Orchestrator.Client</x:String>
+      <x:String>UiPath.Orchestrator.Client.Models</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>UiPath.CSV.Activities</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.CSV</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.Exchange.Activities</x:String>
+      <x:String>UiPath.Mail.IMAP.Activities</x:String>
+      <x:String>UiPath.Mail.Outlook.Activities</x:String>
+      <x:String>UiPath.Mail.POP3.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.JSON.Activities</x:String>
+      <x:String>UiPath.REST.Activities</x:String>
+      <x:String>UiPath.SOAP.Activities</x:String>
+      <x:String>UiPath.XML.Activities</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OrchestratorClient</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Write to Db" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBconn" />
+      <Variable x:TypeArguments="x:Int32" Name="aux" />
+    </Sequence.Variables>
+    <ui:DatabaseConnect DatabaseConnection="[DBconn]" DisplayName="Connect to Database" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=MatchesDatabase;Integrated Security=SSPI;" />
+    <TryCatch DisplayName="Insert into Database" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Finally>
+        <ui:DatabaseDisconnect DatabaseConnection="[DBconn]" DisplayName="Disconnect" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
+      </TryCatch.Finally>
+      <TryCatch.Try>
+        <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[MatchesTable]" DisplayName="For Each Scraped Match" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+          <ui:ForEachRow.Body>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="Prepare insertion" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Int32" Name="homeId" />
+                  <Variable x:TypeArguments="x:Int32" Name="awayId" />
+                  <Variable x:TypeArguments="x:Decimal" Name="c1" />
+                  <Variable x:TypeArguments="x:Decimal" Name="cX" />
+                  <Variable x:TypeArguments="x:Decimal" Name="c2" />
+                  <Variable x:TypeArguments="s:DateTime" Name="dateAndTime" />
+                  <Variable x:TypeArguments="x:Int32" Name="leagueId" />
+                  <Variable x:TypeArguments="x:Int32" Name="countryId" />
+                  <Variable x:TypeArguments="x:Int32" Name="bookieId" />
+                  <Variable x:TypeArguments="x:String" Name="UQHash" />
+                </Sequence.Variables>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLeagueandCountryCodes workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="GetLeagueandCountryCodes.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="leagueName">[leagueArg]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="countryName">[countryArg]</InArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</OutArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="countryId">[countryId]</OutArgument>
+                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow(Home)" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Gazde").ToString]</InArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[homeId]</OutArgument>
+                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow(Away)" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Oaspeti").ToString]</InArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[awayId]</OutArgument>
+                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <Assign DisplayName="Assign Cota pentru 1" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Decimal">[c1]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(row("1").ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="Assign cota pentru X" sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Decimal">[cX]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(row("x").ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign DisplayName="Assign Cota pentru 2" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Decimal">[c2]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(row("2").ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <TryCatch DisplayName="Try Catch" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                  <TryCatch.Try>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="s:DateTime">[dateAndTime]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(row("DateTime").ToString,"dd/MM/yyyy HH:mm",System.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <WriteLine DisplayName="Write Line" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[row(&quot;DateTime&quot;).ToString]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetBookieId workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="GetBookieId.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="bookieName">[bookieArg]</InArgument>
+                    <OutArgument x:TypeArguments="x:Int32" x:Key="bookieId">[bookieId]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GenerateMatchesCode workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="GenerateMatchesCode.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="HomeId">[homeId]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="AwayId">[awayId]</InArgument>
+                    <InArgument x:TypeArguments="x:Int32" x:Key="BookieId">[bookieId]</InArgument>
+                    <InArgument x:TypeArguments="s:DateTime" x:Key="DateTime">[dateAndTime]</InArgument>
+                    <OutArgument x:TypeArguments="x:String" x:Key="Code">[UQHash]</OutArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <TryCatch DisplayName="Check if match already exists" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch.Variables>
+                    <Variable x:TypeArguments="x:String" Name="OppHash" />
+                  </TryCatch.Variables>
+                  <TryCatch.Try>
+                    <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Insert Match Opportunity" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="INSERT INTO Matches VALUES (@home,@away,@dateNtime,@bookie,@c1,@cX,@c2,@league,@country,@hash,NULL)">
+                      <ui:ExecuteNonQuery.Parameters>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="home">[homeId]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="away">[awayId]</InArgument>
+                        <InArgument x:TypeArguments="s:DateTime" x:Key="dateNtime">[dateAndTime]</InArgument>
+                        <InArgument x:TypeArguments="x:Decimal" x:Key="c1">[c1]</InArgument>
+                        <InArgument x:TypeArguments="x:Decimal" x:Key="cX">[cX]</InArgument>
+                        <InArgument x:TypeArguments="x:Decimal" x:Key="c2">[c2]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="league">[leagueId]</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="country">[countryId]</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="hash">[UQHash]</InArgument>
+                      </ui:ExecuteNonQuery.Parameters>
+                    </ui:ExecuteNonQuery>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Game with unique hash &quot;+UQHash+&quot;is already in the database&quot;]" />
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                  <TryCatch.Finally>
+                    <Sequence DisplayName="Insert opportunity match" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="sd:DataTable" Name="OppDataTable" />
+                        <Variable x:TypeArguments="x:Int32" Name="OppId" />
+                      </Sequence.Variables>
+                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GenerateOpportunityHash workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="GenerateOpportunityHash.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="HomeId">[homeId]</InArgument>
+                          <InArgument x:TypeArguments="x:Int32" x:Key="AwayId">[awayId]</InArgument>
+                          <InArgument x:TypeArguments="s:DateTime" x:Key="DateTime">[dateAndTime]</InArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="Code">[OppHash]</OutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
+                      <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[OppDataTable]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="SELECT Id FROM Opportunities WHERE Hash=@hash">
+                        <ui:ExecuteQuery.Parameters>
+                          <InArgument x:TypeArguments="x:String" x:Key="hash">[OppHash]</InArgument>
+                        </ui:ExecuteQuery.Parameters>
+                      </ui:ExecuteQuery>
+                      <TryCatch DisplayName="If there's an existing opportunity" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+                        <TryCatch.Try>
+                          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="sd:DataTable" Name="OpportunityDT" />
+                              <Variable x:TypeArguments="x:Decimal" Name="co1" />
+                              <Variable x:TypeArguments="x:Decimal" Name="coX" />
+                              <Variable x:TypeArguments="x:Decimal" Name="co2" />
+                            </Sequence.Variables>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Int32">[OppId]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Int32">[Integer.Parse(OppDataTable.Rows(0)("Id").ToString)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[OpportunityDT]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="SELECT 1,X,2 FROM Opportunities WHERE Hash=@hash">
+                              <ui:ExecuteQuery.Parameters>
+                                <InArgument x:TypeArguments="x:String" x:Key="hash">[OppHash]</InArgument>
+                              </ui:ExecuteQuery.Parameters>
+                            </ui:ExecuteQuery>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Decimal">[co1]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("1").ToString)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Decimal">[coX]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("X").ToString)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Decimal">[co2]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("2").ToString)]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <If Condition="[c1 &gt; co1]" sap2010:WorkflowViewState.IdRef="If_1">
+                              <If.Then>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_14">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Decimal">[co1]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Decimal">[c1]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_5" Sql="UPDATE Opportunities SET 1=@odd, Id1=@bookie WHERE Id=@id">
+                                    <ui:ExecuteNonQuery.Parameters>
+                                      <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co1]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="id">[OppId]</InArgument>
+                                    </ui:ExecuteNonQuery.Parameters>
+                                  </ui:ExecuteNonQuery>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <If Condition="[cX &gt; coX]" sap2010:WorkflowViewState.IdRef="If_2">
+                              <If.Then>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Decimal">[coX]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Decimal">[cX]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_6" Sql="UPDATE Opportunities SET X=@odd, IdX=@bookie WHERE Id=@id">
+                                    <ui:ExecuteNonQuery.Parameters>
+                                      <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co1]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="id">[OppId]</InArgument>
+                                    </ui:ExecuteNonQuery.Parameters>
+                                  </ui:ExecuteNonQuery>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                            <If Condition="[c2 &gt; co2]" sap2010:WorkflowViewState.IdRef="If_3">
+                              <If.Then>
+                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:Decimal">[co2]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:Decimal">[c2]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_4" Sql="UPDATE Opportunities SET 2=@odd, Id1=@bookie WHERE Id=@id">
+                                    <ui:ExecuteNonQuery.Parameters>
+                                      <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co2]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
+                                      <InArgument x:TypeArguments="x:Int32" x:Key="id">[OppId]</InArgument>
+                                    </ui:ExecuteNonQuery.Parameters>
+                                  </ui:ExecuteNonQuery>
+                                </Sequence>
+                              </If.Then>
+                            </If>
+                          </Sequence>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="s:IndexOutOfRangeException" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                            <ActivityAction x:TypeArguments="s:IndexOutOfRangeException">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:IndexOutOfRangeException" Name="exception" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Add New Opportunity" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <Sequence.Variables>
+                                  <Variable x:TypeArguments="sd:DataTable" Name="AuxIdDT" />
+                                  <Variable x:TypeArguments="x:Int32" Name="AuxId" />
+                                </Sequence.Variables>
+                                <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[AuxIdDT]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="SELECT Bookie FROM Matches WHERE Hash=@hash">
+                                  <ui:ExecuteQuery.Parameters>
+                                    <InArgument x:TypeArguments="x:String" x:Key="hash">[UQHash]</InArgument>
+                                  </ui:ExecuteQuery.Parameters>
+                                </ui:ExecuteQuery>
+                                <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[AuxId]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[Integer.Parse(AuxIdDT.Rows(0)("Bookie").ToString)]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                                <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Insert Match Opportunity" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" Sql="INSERT INTO Opportunities VALUES (@home,@away,@c1,@cX,@c2,@aId,@aId,@aId,@dateNtime,@league,@country,@hash,NULL)">
+                                  <ui:ExecuteNonQuery.Parameters>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="home">[homeId]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="away">[awayId]</InArgument>
+                                    <InArgument x:TypeArguments="s:DateTime" x:Key="dateNtime">[dateAndTime]</InArgument>
+                                    <InArgument x:TypeArguments="x:Decimal" x:Key="c1">[c1]</InArgument>
+                                    <InArgument x:TypeArguments="x:Decimal" x:Key="cX">[cX]</InArgument>
+                                    <InArgument x:TypeArguments="x:Decimal" x:Key="c2">[c2]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="league">[leagueId]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="country">[countryId]</InArgument>
+                                    <InArgument x:TypeArguments="x:String" x:Key="hash">[OppHash]</InArgument>
+                                    <InArgument x:TypeArguments="x:Int32" x:Key="aId">[AuxId]</InArgument>
+                                  </ui:ExecuteNonQuery.Parameters>
+                                </ui:ExecuteNonQuery>
+                              </Sequence>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                      </TryCatch>
+                    </Sequence>
+                  </TryCatch.Finally>
+                </TryCatch>
+              </Sequence>
+            </ActivityAction>
+          </ui:ForEachRow.Body>
+        </ui:ForEachRow>
+      </TryCatch.Try>
+    </TryCatch>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="DatabaseConnect_1" sap:VirtualizedContainerService.HintSize="314.4,60">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DatabaseDisconnect_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_7" sap:VirtualizedContainerService.HintSize="544,88" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_6" sap:VirtualizedContainerService.HintSize="544,88" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_8" sap:VirtualizedContainerService.HintSize="544,88" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="544,60" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="544,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="544,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="243.2,60" />
+      <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="210.4,62.4" />
+      <sap2010:ViewStateData Id="Catch`1_2" sap:VirtualizedContainerService.HintSize="403.2,22.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="544,291.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_9" sap:VirtualizedContainerService.HintSize="544,88">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_10" sap:VirtualizedContainerService.HintSize="544,88">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExecuteNonQuery_1" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314.4,92.8" />
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="529.6,22.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_11" sap:VirtualizedContainerService.HintSize="504,88" />
+      <sap2010:ViewStateData Id="ExecuteQuery_1" sap:VirtualizedContainerService.HintSize="504,89.6" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="ExecuteQuery_4" sap:VirtualizedContainerService.HintSize="464,89.6" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="ExecuteNonQuery_5" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="336.8,314.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,464">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="ExecuteNonQuery_6" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="336.8,314.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,464">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="ExecuteNonQuery_4" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="336.8,314.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,464">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="486.4,2126.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExecuteQuery_3" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="ExecuteNonQuery_3" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336.8,444">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="489.6,22.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="504,2076" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="526.4,2458.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="544,2689.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="566.4,4085.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="596.8,4234.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="417.6,268">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="336.8,277.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WritetoTestDB_1" sap:VirtualizedContainerService.HintSize="376.8,357.6" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
