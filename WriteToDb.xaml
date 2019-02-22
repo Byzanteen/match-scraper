@@ -285,7 +285,7 @@
                                 <InArgument x:TypeArguments="x:Int32">[Integer.Parse(OppDataTable.Rows(0)("Id").ToString)]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[OpportunityDT]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="SELECT 1,X,2 FROM Opportunities WHERE Hash=@hash">
+                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[OpportunityDT]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_4" Sql="SELECT [1],[X],[2] FROM Opportunities WHERE Hash=@hash">
                               <ui:ExecuteQuery.Parameters>
                                 <InArgument x:TypeArguments="x:String" x:Key="hash">[OppHash]</InArgument>
                               </ui:ExecuteQuery.Parameters>
@@ -295,7 +295,7 @@
                                 <OutArgument x:TypeArguments="x:Decimal">[co1]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
-                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("1").ToString)]</InArgument>
+                                <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(OpportunityDT.Rows(0)("1").ToString,NumberStyles.AllowDecimalPoint)]</InArgument>
                               </Assign.Value>
                             </Assign>
                             <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
@@ -303,7 +303,7 @@
                                 <OutArgument x:TypeArguments="x:Decimal">[coX]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
-                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("X").ToString)]</InArgument>
+                                <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(OpportunityDT.Rows(0)("X").ToString)]</InArgument>
                               </Assign.Value>
                             </Assign>
                             <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
@@ -311,7 +311,7 @@
                                 <OutArgument x:TypeArguments="x:Decimal">[co2]</OutArgument>
                               </Assign.To>
                               <Assign.Value>
-                                <InArgument x:TypeArguments="x:Decimal">[Integer.Parse(OpportunityDT.Rows(0)("2").ToString)]</InArgument>
+                                <InArgument x:TypeArguments="x:Decimal">[Decimal.Parse(OpportunityDT.Rows(0)("2").ToString)]</InArgument>
                               </Assign.Value>
                             </Assign>
                             <If Condition="[c1 &gt; co1]" sap2010:WorkflowViewState.IdRef="If_1">
@@ -325,7 +325,7 @@
                                       <InArgument x:TypeArguments="x:Decimal">[c1]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_5" Sql="UPDATE Opportunities SET 1=@odd, Id1=@bookie WHERE Id=@id">
+                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_5" Sql="UPDATE Opportunities SET [1]=@odd, Id1=@bookie WHERE Id=@id">
                                     <ui:ExecuteNonQuery.Parameters>
                                       <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co1]</InArgument>
                                       <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
@@ -348,7 +348,7 @@
                                   </Assign>
                                   <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_6" Sql="UPDATE Opportunities SET X=@odd, IdX=@bookie WHERE Id=@id">
                                     <ui:ExecuteNonQuery.Parameters>
-                                      <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co1]</InArgument>
+                                      <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[coX]</InArgument>
                                       <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
                                       <InArgument x:TypeArguments="x:Int32" x:Key="id">[OppId]</InArgument>
                                     </ui:ExecuteNonQuery.Parameters>
@@ -367,7 +367,7 @@
                                       <InArgument x:TypeArguments="x:Decimal">[c2]</InArgument>
                                     </Assign.Value>
                                   </Assign>
-                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_4" Sql="UPDATE Opportunities SET 2=@odd, Id1=@bookie WHERE Id=@id">
+                                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_4" Sql="UPDATE Opportunities SET [2]=@odd, Id2=@bookie WHERE Id=@id">
                                     <ui:ExecuteNonQuery.Parameters>
                                       <InArgument x:TypeArguments="x:Decimal" x:Key="odd">[co2]</InArgument>
                                       <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
@@ -431,7 +431,7 @@
         </ui:ForEachRow>
       </TryCatch.Try>
     </TryCatch>
-    <sads:DebugSymbol.Symbol>dzFEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXFdyaXRlVG9EYi54YW1sogFpA7MDDgIBAW4FbqICAwH5AW8FsQMQAgECbpoBbrEBAwH9AW7DAW6fAgMB/AFuLG42AwH6AXQJrwMZAgEGcQlxkAECAQN0OnRKAwH3AXoPrAMaAgEHcTNxPQIBBIcBEY8BKQMB6wGQARGXASkDAeIBmAERnwEpAwHZAaABEacBGgMB1QGoARGvARoDAdEBsAERtwEaAwHNAbgBEc0BHAMBxgHOARHUASkDAb4B1QER3QEpAwGyAd4BEasDHAIBCIkBT4kBWgMB9QGMAU6MAVkDAfMBigFQigFcAwHxAY0BWI0BYAMB7wGLAU2LAVcDAe0BhwHRAYcB8AEDAewBkgFNkgFkAwHqAZQBWJQBYAMB6AGTAUuTAVMDAeYBlQFMlQFWAwHkAZAByAGQAdgBAwHjAZoBTZoBZgMB4QGcAVicAWADAd8BmwFLmwFTAwHdAZ0BTJ0BVgMB2wGYAcgBmAHYAQMB2gGlAT2lAV8DAdgBogE+ogFCAwHWAa0BPa0BXwMB1AGqAT6qAUIDAdIBtQE9tQFfAwHQAbIBPrIBQgMBzgG6ARXBAR4DAckByQEZyQGZAQMBxwHRAU/RAVoDAcQB0AFY0AFgAwHCAdIBTdIBVwMBwAHOAcQBzgHWAQMBvwHaAU/aAVwDAbwB1wFK1wFSAwG6AdgBStgBUgMBuAHVAc0B1QHnAQMBtwHZAUzZAVYDAbUB2wFK2wFSAwGzAeMBFfABKgMBmgH9ARWpAyACAQz4ARn4Ad0BAgEJvwFCvwG2AQMBzAG8AUO8AVADAcoByQFwyQGWAQMByAHoAUzoAVADAbAB6QFM6QFQAwGuAeMBwwHjAc0BAwGsAeoBTOoBUAMBqgHsAU7sAVgDAagB5QFM5QFUAwGmAe4BTe4BVQMBpAHtAU/tAVoDAaIB5wFU5wFhAwGgAeYBTOYBVAMBngHjAYYC4wHrAgMBnQHrAU7rAVgDAZsBggIXiQIvAwGQAYoCF44CKQMBiAGPAheoAyICAQ34AYYB+AHaAQIBCoYCVYYCYgMBmAGEAlCEAlgDAZYBhQJQhQJYAwGUAYIC1wGCAvUBAwGTAYcCUIcCWQMBkQGKArcBigLBAQMBjgGMAk+MAlgDAYwBigJ1igKFAQMBigGKAvcBigKmAgMBiQGRAhv8AiYCATOEAx+kAyoCAQ6YAh2fAiYDAYQBoAIdpAIvAgF8pQIdrAImAgF4rQIdtAImAgF0tQIdvAImAgFwvQId0QIiAgFc0gId5gIiAgFI5wId+wIiAgE0iQMhjQMzAgErjgMhlQMqAgEnlgMhowM2AgEPnQJHnQJ7AwGHAZoCSJoCTwMBhQGgAr4BoALIAQMBggGiAlWiAl4DAYABoAJ7oAKMAQIBfqAC/gGgArACAgF9qgJJqgJ9AgF7pwJKpwJPAgF5sgJJsgJ9AgF3rwJKrwJPAgF1ugJJugJ9AgFztwJKtwJPAgFxvQIrvQI6AgFdvwIhzwIsAgFg0gIr0gI6AgFJ1AIh5AIsAgFM5wIr5wI6AgE16QIh+QIsAgE4iQO8AYkDxgECATGLA1mLA2ECAS+JA3+JA4oBAgEtiQP8AYkDqQICASyTA0uTA34CASqQA0yQA1MCASibA1ibA1wCASWcA1icA1wCASOWA88BlgPZAQIBIZ0DWJ0DXAIBH54DWp4DZAIBHZgDWJgDYAIBG6ADWaADYgIBGZ8DW58DZgIBF6EDV6EDXgIBFZoDYJoDbQIBE5kDWJkDYAIBEZYDkgKWA4QDAgEQwAIjxwIsAgFryAIjzgI4AgFh1QIj3AIsAgFX3QIj4wI4AgFN6gIj8QIsAgFD8gIj+AI4AgE5xQJPxQJTAgFuwgJQwgJVAgFsyALKAcgC1AECAWnIAo0CyALIAgIBaMwCWMwCXwIBZsoCW8oCYAIBZMsCXMsCZgIBYtoCT9oCUwIBWtcCUNcCVQIBWN0CygHdAtQBAgFV3QKNAt0CyAICAVThAljhAl8CAVLfAlvfAmACAVDgAlzgAmYCAU7vAk/vAlMCAUbsAlDsAlUCAUTyAsoB8gLUAQIBQfICjQLyAsgCAgFA9gJY9gJfAgE+9AJb9AJgAgE89QJc9QJmAgE6</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -443,12 +443,12 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="DatabaseDisconnect_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_7" sap:VirtualizedContainerService.HintSize="544,88" />
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_6" sap:VirtualizedContainerService.HintSize="544,88" />
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_8" sap:VirtualizedContainerService.HintSize="544,88" />
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="544,60" />
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="544,60" />
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="544,60" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_7" sap:VirtualizedContainerService.HintSize="457.6,88" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_6" sap:VirtualizedContainerService.HintSize="457.6,88" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_8" sap:VirtualizedContainerService.HintSize="457.6,88" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="457.6,60" />
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="457.6,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="457.6,60" />
       <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="243.2,60" />
       <sap2010:ViewStateData Id="WriteLine_1" sap:VirtualizedContainerService.HintSize="210.4,62.4" />
       <sap2010:ViewStateData Id="Catch`1_2" sap:VirtualizedContainerService.HintSize="403.2,22.4">
@@ -459,7 +459,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="544,291.2">
+      <sap2010:ViewStateData Id="TryCatch_3" sap:VirtualizedContainerService.HintSize="457.6,291.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -467,7 +467,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_9" sap:VirtualizedContainerService.HintSize="544,88">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_9" sap:VirtualizedContainerService.HintSize="457.6,88">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -475,7 +475,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_10" sap:VirtualizedContainerService.HintSize="544,88">
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_10" sap:VirtualizedContainerService.HintSize="457.6,88">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -485,7 +485,7 @@
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="ExecuteNonQuery_1" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
       <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314.4,92.8" />
-      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="529.6,22.4">
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="443.2,22.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -493,13 +493,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_11" sap:VirtualizedContainerService.HintSize="504,88" />
-      <sap2010:ViewStateData Id="ExecuteQuery_1" sap:VirtualizedContainerService.HintSize="504,89.6" />
-      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="ExecuteQuery_4" sap:VirtualizedContainerService.HintSize="464,89.6" />
-      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="464,60" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_11" sap:VirtualizedContainerService.HintSize="417.6,88" />
+      <sap2010:ViewStateData Id="ExecuteQuery_1" sap:VirtualizedContainerService.HintSize="417.6,89.6" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="ExecuteQuery_4" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="314.4,60" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="314.4,60" />
       <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="314.4,60" />
       <sap2010:ViewStateData Id="ExecuteNonQuery_5" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
       <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="336.8,314.4">
@@ -509,10 +509,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,464">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="314.4,52.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -526,10 +526,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,464">
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="314.4,52.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -546,15 +546,16 @@
       <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,464">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="486.4,2126.4">
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="336.8,892.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -568,7 +569,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="489.6,22.4">
+      <sap2010:ViewStateData Id="Catch`1_4" sap:VirtualizedContainerService.HintSize="403.2,22.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -576,23 +577,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="504,2076" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="526.4,2458.4">
+      <sap2010:ViewStateData Id="TryCatch_4" sap:VirtualizedContainerService.HintSize="417.6,291.2" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="440,673.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="544,2689.6">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="566.4,4085.6">
+      <sap2010:ViewStateData Id="TryCatch_2" sap:VirtualizedContainerService.HintSize="457.6,904.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -600,7 +593,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="596.8,4234.4">
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="480,2300.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="510.4,2449.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
