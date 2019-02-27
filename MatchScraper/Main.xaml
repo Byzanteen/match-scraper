@@ -272,6 +272,25 @@
                   </Flowchart.StartNode>
                   <x:Reference>__ReferenceID2</x:Reference>
                 </Flowchart>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke DeleteOldMatches workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="DeleteOldMatches.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="Days">200</InArgument>
+                        <InArgument x:TypeArguments="x:Int32" x:Key="OppDays">400</InArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                    <FlowStep.Next>
+                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke CalculateProfits workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="CalculateProfits.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                      </FlowStep>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowStep.Next>
               </FlowStep>
             </FlowStep.Next>
           </FlowStep>
@@ -281,7 +300,9 @@
     <x:Reference>__ReferenceID3</x:Reference>
     <x:Reference>__ReferenceID4</x:Reference>
     <x:Reference>__ReferenceID5</x:Reference>
-    <sads:DebugSymbol.Symbol>dyxEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE1haW4ueGFtbGZCA50CDwIBAUUJjAEVAgFPjwEN0wEZAgEn1gERkgIdAgECSA+IARoCAVCSARPPAR4CASjZAReOAiICAQNKREphAgFRTBF6HAIBXXsRfykCAVmAARGHASkCAVKWARW/ASACATbAARXGAS0CATDHARXOAS0CASnbAUzbAWkCAQTdARn+ASQCARL/ARmFAjECAQyGAhmNAjECAQVQE3kkAgFefVh9ZgIBW3vPAXvsAQIBWoUBToUBVQIBWIQBT4QBVgIBV4MBToMBVAIBVoIBVYIBYwIBVIABwgGAAdIBAgFTmgEXvgEoAgE3xAFTxAFaAgE1wwFSwwFYAgE0wgFZwgFnAgEywAHSAcAB7gECATHMAVLMAVkCAS/LAVPLAVoCAS7KAVLKAVgCAS3JAVnJAWcCASvHAcoBxwHaAQIBKuEBG/0BLAIBE4MCV4MCXgIBEYICVoICXAIBEIECXYECaQIBDv8B1gH/AfIBAgENiwJWiwJlAgELigJXigJeAgEKiQJWiQJcAgEJiAJdiAJpAgEHhgLPAYYC3wECAQZQ4wFQ9gECAXVQ+wFQqAICAXRWGXYkAgFfmgHlAZoB+AECAU2aAf0BmgGoAgIBTKABHbsBKAIBOOEB3gHhAe8BAgEl4QH0AeEBlAICASTnASH6ASwCARRXG14mAgFwXxtwJgIBY3EbdSoCAWChAR+oASoCAUipAR+wASoCAUSxAR+1ATACATy2AR+6AS4CATnoASPvAS4CASDwASP0ATQCARj1ASP5ATICARVcrgFc7AECAXNZR1lLAgFyWTpZPgIBcWAdby8CAWRzSHNZAgFhpgGyAaYB8AECAUujAUyjAVACAUqjAT6jAUMCAUmuAbIBrgH3AQIBR6sBS6sBTgIBRqsBPqsBQgIBRbEB/guxAYMMAgFDswGyAbMB6AECAUKxAZEBsQGWAQIBQbEBW7EBYQIBQLEBbLEBfAIBPrEB1QGxAboLAgE9uAFMuAFdAgE67QG2Ae0B0wICASPqAVDqAVQCASLqAULqAUcCASHwAZwr8AGhKwIBH/IBtgHyAdwBAgEe8AGTAfABmAECAR3wAV/wAWUCARzwAXDwAX4CARrwAdcB8AHYKgIBGfcBUPcBXwIBFmCLAWCeAQIBbmYjbC4CAWVnJWs2AgFmZ+cMZ+wMAgFtabgBaeIBAgFsZ5cBZ5wBAgFrZ2FnZwIBamdyZ4IBAgFoZ+IBZ6MMAgFn</sads:DebugSymbol.Symbol>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <sads:DebugSymbol.Symbol>dyFEOlxMaWNlbnRhXE1hdGNoU2NyYXBlclxNYWluLnhhbWxsQgOyAg8CAQFFCYwBFQIBVY8BDdMBGQIBLdYBEZICHQIBCJUCFZoCLQIBBJ0CGaECMQIBAkgPiAEaAgFWkgETzwEeAgEu2QEXjgIiAgEJmAJPmAJSAgEHlQLOAZUC5QECAQaXAkyXAk8CAQWdAtIBnQLpAQIBA0pESmECAVdMEXocAgFjexF/KQIBX4ABEYcBKQIBWJYBFb8BIAIBPMABFcYBLQIBNscBFc4BLQIBL9sBTNsBaQIBCt0BGf4BJAIBGP8BGYUCMQIBEoYCGY0CMQIBC1ATeSQCAWR9WH1mAgFhe88Be+wBAgFghQFOhQFVAgFehAFPhAFWAgFdgwFOgwFUAgFcggFVggFjAgFagAHCAYAB0gECAVmaARe+ASgCAT3EAVPEAVoCATvDAVLDAVgCATrCAVnCAWcCATjAAdIBwAHuAQIBN8wBUswBWQIBNcsBU8sBWgIBNMoBUsoBWAIBM8kBWckBZwIBMccBygHHAdoBAgEw4QEb/QEsAgEZgwJXgwJeAgEXggJWggJcAgEWgQJdgQJpAgEU/wHWAf8B8gECAROLAlaLAmUCARGKAleKAl4CARCJAlaJAlwCAQ+IAl2IAmkCAQ2GAs8BhgLfAQIBDFDjAVD2AQIBe1D7AVCoAgIBelYZdiQCAWWaAeUBmgH4AQIBU5oB/QGaAagCAgFSoAEduwEoAgE+4QHeAeEB7wECASvhAfQB4QGUAgIBKucBIfoBLAIBGlcbXiYCAXZfG3AmAgFpcRt1KgIBZqEBH6gBKgIBTqkBH7ABKgIBSrEBH7UBMAIBQrYBH7oBLgIBP+gBI+8BLgIBJvABI/QBNAIBHvUBI/kBMgIBG1yuAVzsAQIBeVlHWUsCAXhZOlk+AgF3YB1vLwIBanNIc1kCAWemAbIBpgHwAQIBUaMBTKMBUAIBUKMBPqMBQwIBT64BsgGuAfcBAgFNqwFLqwFOAgFMqwE+qwFCAgFLsQH+C7EBgwwCAUmzAbIBswHoAQIBSLEBkQGxAZYBAgFHsQFbsQFhAgFGsQFssQF8AgFEsQHVAbEBugsCAUO4AUy4AV0CAUDtAbYB7QHTAgIBKeoBUOoBVAIBKOoBQuoBRwIBJ/ABnCvwAaErAgEl8gG2AfIB3AECASTwAZMB8AGYAQIBI/ABX/ABZQIBIvABcPABfgIBIPAB1wHwAdgqAgEf9wFQ9wFfAgEcYIsBYJ4BAgF0ZiNsLgIBa2clazYCAWxn5wxn7AwCAXNpuAFp4gECAXJnlwFnnAECAXFnYWdnAgFwZ3JnggECAW5n4gFnowwCAW0=</sads:DebugSymbol.Symbol>
   </Flowchart>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -462,11 +483,31 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_11" sap:VirtualizedContainerService.HintSize="314.4,88" />
+      <sap2010:ViewStateData Id="InvokeWorkflowFile_12" sap:VirtualizedContainerService.HintSize="200,52.8" />
+      <sap2010:ViewStateData Id="FlowStep_8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">40,333.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_7">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">40,213.6</av:Point>
+            <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">140,266.4 140,333.6</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="FlowStep_6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">350,213.6</av:Point>
             <av:Size x:Key="ShapeSize">200,52.8</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">350,240 240,240</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -482,9 +523,9 @@
       <sap2010:ViewStateData Id="FlowStep_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:Point x:Key="ShapeLocation">50,114.02</av:Point>
+            <av:Point x:Key="ShapeLocation">30,113.6</av:Point>
             <av:Size x:Key="ShapeSize">200,52.8</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">250,140.42 280,140.42 280,140 350,140</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">230,140 350,140</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
@@ -494,7 +535,7 @@
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
             <av:Size x:Key="ShapeSize">60,75.2</av:Size>
-            <av:PointCollection x:Key="ConnectorLocation">270,40.1 150,40.1 150,114.02</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">270,40.1 130,40.1 130,113.6</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
