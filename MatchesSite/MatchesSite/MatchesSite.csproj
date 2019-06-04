@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-MatchesSite-271FA13D-724B-4185-B431-E037713DD1AD</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190602203112_FlagsAndLinks.cs" />
+    <Compile Remove="Migrations\20190602203112_FlagsAndLinks.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\casa-pariurilor.png" />
+    <None Include="wwwroot\images\fortuna.png" />
+    <None Include="wwwroot\images\mozzart.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
+</Project>

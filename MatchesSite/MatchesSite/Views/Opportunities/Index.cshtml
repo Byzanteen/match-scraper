@@ -1,0 +1,97 @@
+﻿@model IEnumerable<MatchesSite.Models.Opportunities>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Matches</h2>
+
+<table class="table">
+    <thead>
+		<tr>
+			<th>
+				Home
+			</th>
+			<th>
+				Away
+			</th>
+			<th>
+				1
+			</th>
+			<th>
+				X
+			</th>
+			<th>
+				2
+			</th>
+			<th>
+				Date
+			</th>
+			<th>
+				1
+			</th>
+			<th>
+				X
+			</th>
+			<th>
+				2
+			</th>
+			<th>
+				Country
+			</th>
+			<th>
+				League
+			</th>
+			<th>
+				Profit
+			</th>
+			<th></th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.HomeNavigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.AwayNavigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item._1)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.X)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item._2)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Date)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id1Navigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.IdXNavigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Id2Navigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CountryNavigation.Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.LeagueNavigation.Code)
+			</td>
+			<td>
+				@Math.Round((double)item.Profits.First().Roi, 2)%
+			</td>
+			<td>
+				<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+			</td>
+		</tr>
+}
+    </tbody>
+</table>

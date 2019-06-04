@@ -1,0 +1,97 @@
+﻿@model MatchesSite.Models.Opportunities
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Opportunities</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model._1)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model._1)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.X)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.X)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model._2)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model._2)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Hash)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Hash)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.AwayNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.AwayNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.CountryNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.CountryNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.HomeNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.HomeNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Id1Navigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Id1Navigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Id2Navigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Id2Navigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.IdXNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.IdXNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.LeagueNavigation)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LeagueNavigation.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Profits)
+		</dt>
+		<dd>
+			@Math.Round((double)Model.Profits.First().Roi, 2)%
+		</dd>
+	</dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
