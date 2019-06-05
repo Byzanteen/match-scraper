@@ -1,16 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="GetTeamId"
- xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
- xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
- xmlns:s="clr-namespace:System;assembly=mscorlib"
- xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
- xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
- xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
- xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
- xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:ui="http://schemas.uipath.com/workflow/activities"
- xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="GetTeamId" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="teamName" Type="InArgument(x:String)" />
     <x:Property Name="teamId" Type="OutArgument(x:Int32)" />
@@ -20,6 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>564.8,2119.2</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTeamId_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -71,15 +60,22 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Database</AssemblyReference>
       <AssemblyReference>UiPath.Studio.Plugin.Workflow</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetTeamId" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetTeamId" sap:VirtualizedContainerService.HintSize="524.8,2039.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="s:String[]" Name="teamRoots" />
       <Variable x:TypeArguments="x:String" Name="teamName1" />
       <Variable x:TypeArguments="x:String" Default="[Space(2)]" Name="doubleSpaces" />
     </Sequence.Variables>
-    <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="502.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[teamId]</OutArgument>
       </Assign.To>
@@ -87,7 +83,7 @@
         <InArgument x:TypeArguments="x:Int32">0</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Remove dots" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Remove dots" sap:VirtualizedContainerService.HintSize="502.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[teamName1]</OutArgument>
       </Assign.To>
@@ -95,8 +91,15 @@
         <InArgument x:TypeArguments="x:String">[teamName.Replace("."," ").ToLower]</InArgument>
       </Assign.Value>
     </Assign>
-    <While DisplayName="Remove multiple spaces" sap2010:WorkflowViewState.IdRef="While_1" Condition="[teamName1.Contains(doubleSpaces)]">
-      <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+    <While DisplayName="Remove multiple spaces" sap:VirtualizedContainerService.HintSize="502.4,219.2" sap2010:WorkflowViewState.IdRef="While_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <While.Condition>[teamName1.Contains(doubleSpaces)]</While.Condition>
+      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[teamName1]</OutArgument>
         </Assign.To>
@@ -105,7 +108,7 @@
         </Assign.Value>
       </Assign>
     </While>
-    <Assign DisplayName="Splitting after spaces" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Splitting after spaces" sap:VirtualizedContainerService.HintSize="502.4,60" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:String[]">[teamRoots]</OutArgument>
       </Assign.To>
@@ -113,18 +116,23 @@
         <InArgument x:TypeArguments="s:String[]">[teamName1.Split(" "c)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[teamRoots]">
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="502.4,885.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[teamRoots]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486.4,751.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="IdTable" />
               <Variable x:TypeArguments="x:String" Name="query" />
             </Sequence.Variables>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_6">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[query]</OutArgument>
               </Assign.To>
@@ -132,15 +140,20 @@
                 <InArgument x:TypeArguments="x:String">["SELECT Id FROM [MatchesDatabase].[dbo].[Teams] WHERE League = "+leagueId.ToString+" AND LOWER(Name) LIKE '%"+item+"%'"]</InArgument>
               </Assign.Value>
             </Assign>
-            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[IdTable]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[query]">
+            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[IdTable]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap:VirtualizedContainerService.HintSize="464,89.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="[query]">
               <ui:ExecuteQuery.Parameters>
                 <scg:Dictionary x:TypeArguments="x:String, Argument" />
               </ui:ExecuteQuery.Parameters>
             </ui:ExecuteQuery>
-            <If Condition="[IdTable.Rows.Count=1]" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[IdTable.Rows.Count=1]" sap:VirtualizedContainerService.HintSize="464,396.8" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence>
-                  <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Sequence sap:VirtualizedContainerService.HintSize="265.6,247.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_5">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[teamId]</OutArgument>
                     </Assign.To>
@@ -148,73 +161,32 @@
                       <InArgument x:TypeArguments="x:Int32">[Integer.Parse(IdTable.Rows(0)("Id").ToString)]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
-                  <sap2010:WorkflowViewState.IdRef>Sequence_3</sap2010:WorkflowViewState.IdRef>
+                  <ui:Break sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
                 </Sequence>
               </If.Then>
             </If>
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <If Condition="[teamId=0]" sap2010:WorkflowViewState.IdRef="If_2">
+    <If Condition="[teamId=0]" sap:VirtualizedContainerService.HintSize="502.4,429.6" sap2010:WorkflowViewState.IdRef="If_2">
       <If.Then>
-        <ui:LogMessage DisplayName="Log Message" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Team &quot; + teamName + &quot; not found in database!&quot;]" />
+        <Sequence sap:VirtualizedContainerService.HintSize="336.8,280" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="314.4,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Error" Message="[&quot;Team &quot; + teamName + &quot; not found in database!&quot;]" />
+          <Throw Exception="[new Exception()]" sap:VirtualizedContainerService.HintSize="314.4,22.4" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </Sequence>
       </If.Then>
     </If>
-    <sads:DebugSymbol.Symbol>dzFEOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXEdldFRlYW1JZC54YW1sJEwDpgEOAgEBUDRQQAIBAlIFWQ4CATVaBWEOAgEwYgVrDQIBJ2wFcw4CASJ0BZ8BEgIBCaABBaQBCgIBA1cvVzACAThUMFQ4AgE2XzBfUwIBM1wxXDwCATFjB2oQAgErYmViiQECAShxMnFJAgElbjNuPgIBI3SQAXSdAQIBIHoLnAEWAgEKoAEToAEfAgEEogEJogHAAQIBBmUzZT4CASx/DYYBFgIBGocBDYsBHwIBE4wBDZsBEgIBC6IBd6IBvQECAQeEATiEAbEBAgEdgQE5gQFAAgEbhwGoAYcBsgECARiHAWuHAXYCARaHAegBhwHxAQIBFIwBG4wBMwIBDI4BEZkBHAIBDY8BE5YBHAIBD5cBE5cBSQIBDpQBPZQBbAIBEpEBPpEBRgIBEA==</sads:DebugSymbol.Symbol>
   </Sequence>
-  <sap2010:WorkflowViewState.ViewStateManager>
-    <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="502.4,60" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="502.4,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="243.2,60" />
-      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="502.4,219.2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="502.4,60" />
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="464,60" />
-      <sap2010:ViewStateData Id="ExecuteQuery_1" sap:VirtualizedContainerService.HintSize="464,89.6" />
-      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="243.2,60" />
-      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="265.6,247.2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,396.8" />
-      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486.4,751.2">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="502.4,885.6">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LogMessage_1" sap:VirtualizedContainerService.HintSize="314.4,92.8" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="502.4,242.4" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="524.8,1852">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetTeamId_1" sap:VirtualizedContainerService.HintSize="564.8,1932" />
-    </sap2010:ViewStateManager>
-  </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

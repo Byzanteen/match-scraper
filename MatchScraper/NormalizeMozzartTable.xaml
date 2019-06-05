@@ -1,15 +1,4 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="NormalizeMozzartTable"
- xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
- xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
- xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
- xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
- xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
- xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
- xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
- xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
- xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
- xmlns:ui="http://schemas.uipath.com/workflow/activities"
- xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="NormalizeMozzartTable" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="MatchesTable" Type="InArgument(sd:DataTable)" />
     <x:Property Name="leagueArg" Type="InArgument(x:String)" />
@@ -18,6 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>587.2,1178.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>NormalizeMozzartTable_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -94,22 +84,40 @@
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>UiPath.Mail</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Normalize Mozzart Table" sap2010:WorkflowViewState.IdRef="Sequence_14">
+  <Sequence DisplayName="Normalize Mozzart Table" sap:VirtualizedContainerService.HintSize="573.6,1223.2" sap2010:WorkflowViewState.IdRef="Sequence_14">
     <Sequence.Variables>
       <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBconn" />
+      <Variable x:TypeArguments="s:Int32[]" Default="[New Integer(30) {}]" Name="RowsToDelete" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="RowsToDeleteIterator" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="i" />
     </Sequence.Variables>
-    <ui:AddDataColumn x:TypeArguments="x:String" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="DateTime" DataTable="[MatchesTable]" DisplayName="Add Data Column" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" MaxLength="100" Unique="False" />
-    <ui:DatabaseConnect DatabaseConnection="[DBconn]" DisplayName="Connect" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=MatchesDatabase;Integrated Security=SSPI;" />
-    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[MatchesTable]" DisplayName="For Each Row" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:AddDataColumn x:TypeArguments="x:String" Column="{x:Null}" DefaultValue="{x:Null}" AllowDBNull="True" AutoIncrement="False" ColumnName="DateTime" DataTable="[MatchesTable]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="551.2,22.4" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_1" MaxLength="100" Unique="False" />
+    <ui:DatabaseConnect DatabaseConnection="[DBconn]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="551.2,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=localhost\SQLEXPRESS;Initial Catalog=MatchesDatabase;Integrated Security=SSPI;">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:DatabaseConnect>
+    <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[MatchesTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="470.4,1603.2" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_24">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="440,1454.4" sap2010:WorkflowViewState.IdRef="Sequence_24">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="homeId" />
               <Variable x:TypeArguments="x:Int32" Name="awayId" />
@@ -119,7 +127,12 @@
               <Variable x:TypeArguments="sd:DataTable" Name="DateTable" />
               <Variable x:TypeArguments="x:String" Name="dateString" />
             </Sequence.Variables>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLeagueandCountryCodes workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="GetLeagueandCountryCodes.xaml">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetLeagueandCountryCodes workflow" sap:VirtualizedContainerService.HintSize="417.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="GetLeagueandCountryCodes.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="leagueName">[leagueArg]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="countryName">[countryArg]</InArgument>
@@ -128,38 +141,95 @@
                 <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Gazde").ToString]</InArgument>
-                <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[homeId]</OutArgument>
-                <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
-              <ui:InvokeWorkflowFile.Arguments>
-                <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Oaspeti").ToString]</InArgument>
-                <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[awayId]</OutArgument>
-                <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
-              </ui:InvokeWorkflowFile.Arguments>
-            </ui:InvokeWorkflowFile>
-            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[DateTable]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="SELECT FORMAT( [Date], 'dd/MM/yyyy HH:mm') FROM Matches WHERE Home = @home AND Away = @away AND Bookie = @bookie">
-              <ui:ExecuteQuery.Parameters>
-                <InArgument x:TypeArguments="x:Int32" x:Key="home">[homeId]</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="away">[awayId]</InArgument>
-                <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
-              </ui:ExecuteQuery.Parameters>
-            </ui:ExecuteQuery>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-              <Assign.To>
-                <OutArgument x:TypeArguments="x:String">[dateString]</OutArgument>
-              </Assign.To>
-              <Assign.Value>
-                <InArgument x:TypeArguments="x:String">[DateTable.Rows(0)("Column1").ToString]</InArgument>
-              </Assign.Value>
-            </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+            <TryCatch DisplayName="Try Catch(Daca nu se gaseste un meci)" sap:VirtualizedContainerService.HintSize="417.6,801.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <TryCatch.Try>
+                <Sequence DisplayName="Daca nu se gaseste un meci" sap:VirtualizedContainerService.HintSize="336.8,570.4" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow" sap:VirtualizedContainerService.HintSize="314.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Gazde").ToString]</InArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[homeId]</OutArgument>
+                      <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke GetTeamId workflow" sap:VirtualizedContainerService.HintSize="314.4,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="GetTeamId.xaml">
+                    <ui:InvokeWorkflowFile.Arguments>
+                      <InArgument x:TypeArguments="x:String" x:Key="teamName">[row("Oaspeti").ToString]</InArgument>
+                      <OutArgument x:TypeArguments="x:Int32" x:Key="teamId">[awayId]</OutArgument>
+                      <InArgument x:TypeArguments="ui:DatabaseConnection" x:Key="DBconn">[DBconn]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="leagueId">[leagueId]</InArgument>
+                    </ui:InvokeWorkflowFile.Arguments>
+                  </ui:InvokeWorkflowFile>
+                  <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[DateTable]" DisplayName="Execute Query" ExistingDbConnection="[DBconn]" sap:VirtualizedContainerService.HintSize="314.4,89.6" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="SELECT FORMAT( [Date], 'dd/MM/yyyy HH:mm') FROM Matches WHERE Home = @home AND Away = @away AND Bookie = @bookie">
+                    <ui:ExecuteQuery.Parameters>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="home">[homeId]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="away">[awayId]</InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="bookie">[bookieId]</InArgument>
+                    </ui:ExecuteQuery.Parameters>
+                  </ui:ExecuteQuery>
+                  <Assign sap:VirtualizedContainerService.HintSize="314.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[dateString]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[DateTable.Rows(0)("Column1").ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </TryCatch.Try>
+              <TryCatch.Catches>
+                <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,22.4" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ActivityAction x:TypeArguments="s:Exception">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Elimina-l" sap:VirtualizedContainerService.HintSize="265.6,52.8" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[RowsToDelete(RowsToDeleteIterator)]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[MatchesTable.Rows.IndexOf(row)-RowsToDeleteIterator]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[RowsToDeleteIterator]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[RowsToDeleteIterator+1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:Continue sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="Continue_1" />
+                    </Sequence>
+                  </ActivityAction>
+                </Catch>
+              </TryCatch.Catches>
+            </TryCatch>
+            <Assign sap:VirtualizedContainerService.HintSize="414.4,60" sap2010:WorkflowViewState.IdRef="Assign_2">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row("DateTime")]</OutArgument>
               </Assign.To>
@@ -167,7 +237,7 @@
                 <InArgument x:TypeArguments="x:Object">[dateString]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign sap:VirtualizedContainerService.HintSize="414.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row("1")]</OutArgument>
               </Assign.To>
@@ -175,68 +245,78 @@
                 <InArgument x:TypeArguments="x:Object">[row("1").ToString.Replace(",",".")]</InArgument>
               </Assign.Value>
             </Assign>
-            <Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="414.4,60" sap2010:WorkflowViewState.IdRef="Assign_6">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row("X")]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Object">[row("X").ToString.Replace(",",".")]</InArgument>
               </Assign.Value>
-              <sap2010:WorkflowViewState.IdRef>Assign_6</sap2010:WorkflowViewState.IdRef>
             </Assign>
-            <Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="414.4,60" sap2010:WorkflowViewState.IdRef="Assign_7">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[row("2")]</OutArgument>
               </Assign.To>
               <Assign.Value>
                 <InArgument x:TypeArguments="x:Object">[row("2").ToString.Replace(",",".")]</InArgument>
               </Assign.Value>
-              <sap2010:WorkflowViewState.IdRef>Assign_7</sap2010:WorkflowViewState.IdRef>
             </Assign>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:ForEachRow>
-    <ui:DatabaseDisconnect DatabaseConnection="[DBconn]" DisplayName="Disconnect" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
-    <sads:DebugSymbol.Symbol>dz1EOlxQcm9ncmFtbWluZ1xVaVBhdGhcTWF0Y2hTY3JhcGVyXE5vcm1hbGl6ZU1venphcnRUYWJsZS54YW1sN2QDygEOAgEBaAVoqQICAUppBWmWAgIBRWoFxwEVAgEFyAEFyAGMAQIBAmiQAWiaAQIBTWilAWi1AQIBS2mOAWmlAQIBSWm3AWmTAgIBSGksaTYCAUZqNmpGAgFDcAvEARYCAQbIAS/IATkCAQN0O3Q+AgEHeg2CASUCATeDAQ2KASUCAS6LAQ2SASUCASWTAQ2ZAR8CARmaAQ2hARYCARWiAQ2pARYCARGqAQ2xARYCAQ6yAQ26ARYCAQu7AQ3DARYCAQh8S3xWAgFBf0p/VQIBP31MfVgCAT2AAVSAAVwCATt+SX5TAgE5es0BeuwBAgE4hQFJhQFgAgE2hwFUhwFcAgE0hgFHhgFPAgEyiAFIiAFSAgEwgwG+AYMBzgECAS+NAUmNAWICAS2PAVSPAVwCASuOAUeOAU8CASmQAUiQAVICASeLAb4BiwHOAQIBJpMBqgGTAbQBAgEjlQFElQFMAgEhlgFElgFMAgEfkwFrkwF4AgEdkwHqAZMB3AICARyXAUaXAVACARqfATifAV8CARicATmcAUUCARanATinAUQCAROkATmkAUoCARKvATivAVwCARCsATmsAUMCAQ+3ATi3AVwCAQ20ATm0AUMCAQzAATjAAVwCAQq9ATm9AUMCAQk=</sads:DebugSymbol.Symbol>
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="551.2,780.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[RowsToDelete]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
+          </ActivityAction.Argument>
+          <Sequence sap:VirtualizedContainerService.HintSize="535.2,646.4" sap2010:WorkflowViewState.IdRef="Sequence_27">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="512.8,521.6" sap2010:WorkflowViewState.IdRef="Sequence_26">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[i&lt;RowsToDeleteIterator]" sap:VirtualizedContainerService.HintSize="490.4,396.8" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="265.6,247.2" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:RemoveDataRow Row="{x:Null}" DataTable="[MatchesTable]" DisplayName="Remove Data Row" sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="RemoveDataRow_1" RowIndex="[Integer.Parse(item.ToString())]" />
+                    <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[i+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <ui:Break sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="Break_1" />
+                </If.Else>
+              </If>
+            </Sequence>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEach.Body>
+    </ui:ForEach>
+    <ui:DatabaseDisconnect DatabaseConnection="[DBconn]" DisplayName="Disconnect" sap:VirtualizedContainerService.HintSize="551.2,22.4" sap2010:WorkflowViewState.IdRef="DatabaseDisconnect_1" />
   </Sequence>
-  <sap2010:WorkflowViewState.ViewStateManager>
-    <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="AddDataColumn`1_1" sap:VirtualizedContainerService.HintSize="367.2,22.4" />
-      <sap2010:ViewStateData Id="DatabaseConnect_1" sap:VirtualizedContainerService.HintSize="367.2,60">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_7" sap:VirtualizedContainerService.HintSize="314.4,88" />
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_8" sap:VirtualizedContainerService.HintSize="314.4,88" />
-      <sap2010:ViewStateData Id="InvokeWorkflowFile_6" sap:VirtualizedContainerService.HintSize="314.4,88" />
-      <sap2010:ViewStateData Id="ExecuteQuery_1" sap:VirtualizedContainerService.HintSize="314.4,89.6" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="314.4,60" />
-      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="314.4,60" />
-      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="314.4,60" />
-      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="314.4,60" />
-      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="314.4,60" />
-      <sap2010:ViewStateData Id="Sequence_24" sap:VirtualizedContainerService.HintSize="336.8,1098.4">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="ForEachRow_1" sap:VirtualizedContainerService.HintSize="367.2,1247.2" />
-      <sap2010:ViewStateData Id="DatabaseDisconnect_1" sap:VirtualizedContainerService.HintSize="367.2,22.4" />
-      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="389.6,1296.8">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="NormalizeMozzartTable_1" sap:VirtualizedContainerService.HintSize="429.6,1376.8" />
-    </sap2010:ViewStateManager>
-  </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>

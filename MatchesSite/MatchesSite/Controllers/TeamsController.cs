@@ -51,7 +51,7 @@ namespace MatchesSite.Controllers
         public IActionResult Create()
         {
             ViewData["Country"] = new SelectList(_context.Countries, "Id", "Name");
-            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Code");
+            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Name");
             return View();
         }
 
@@ -87,7 +87,7 @@ namespace MatchesSite.Controllers
                 return NotFound();
             }
             ViewData["Country"] = new SelectList(_context.Countries, "Id", "Name", teams.Country);
-            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Code", teams.League);
+            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Name", teams.League);
             return View(teams);
         }
 
@@ -124,7 +124,7 @@ namespace MatchesSite.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Country"] = new SelectList(_context.Countries, "Id", "Name", teams.Country);
-            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Code", teams.League);
+            ViewData["League"] = new SelectList(_context.Leagues, "Id", "Name", teams.League);
             return View(teams);
         }
 
