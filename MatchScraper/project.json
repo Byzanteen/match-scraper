@@ -3,18 +3,19 @@
   "description": "Process that scrapes matches from betting sites",
   "main": "Main.xaml",
   "dependencies": {
-    "UiPath.System.Activities": "[18.3.6864.20561]",
+    "UiPath.Database.Activities": "[1.2.6863.32528]",
     "UiPath.Excel.Activities": "[2.4.6863.30657]",
     "UiPath.Mail.Activities": "[1.2.6863.29868]",
-    "UiPath.WebAPI.Activities": "[1.2.6863.33980]",
-    "UiPath.Database.Activities": "[1.2.6863.32528]",
-    "UiPath.UIAutomation.Activities": "[18.3.6877.28298]"
+    "UiPath.System.Activities": "[18.3.6864.20561]",
+    "UiPath.UIAutomation.Activities": "[18.3.6877.28298]",
+    "UiPath.WebAPI.Activities": "[1.2.6863.33980]"
   },
   "schemaVersion": "3.2",
   "studioVersion": "18.3.1.0",
-  "projectVersion": "1.0.6873.525",
+  "projectVersion": "1.0.7099.42987",
   "runtimeOptions": {
     "autoDispose": false,
+    "isPausable": true,
     "excludedLoggedData": [
       "Private:*",
       "*password*"
@@ -26,14 +27,8 @@
     "privateWorkflows": []
   },
   "arguments": {
-    "input": [
-      {
-        "name": "MatchesTable",
-        "type": "System.Data.DataTable, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-        "required": false,
-        "hasDefault": false
-      }
-    ],
+    "input": [],
     "output": []
-  }
+  },
+  "webServices": []
 }
